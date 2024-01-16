@@ -122,6 +122,20 @@ body {
 	margin-top: 1rem;
 }
 
+[class*="error-"] {
+	font-size: .5rem;
+	margin-top: 1em;
+	color: red;
+	font-weight: 400;
+	font-style: italic;
+	display: none;
+	position: absolute;
+}
+
+[class*="day-"] {
+	position: relative;
+}
+
 .attribution a {
 	color: hsl(228, 45%, 44%);
 }

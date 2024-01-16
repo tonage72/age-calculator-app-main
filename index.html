@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <script src="javascript/script.js" defer></script>
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
@@ -11,17 +11,24 @@
 <body>
   <main class="card">
     <form>
-      <div>
+      <div class="day-div">
         <label for="day">DAY</label>
-        <input type="number" id="day" name="day" placeholder="DD" required>
+        <input type="number" id="day" name="day" placeholder="DD">
+        <p class="error-empty-day">This field is required</p>
+        <p class="error-day">Must be a valid day</p>
+        <p class="error-date">Must be a valid date</p>
       </div>
-      <div>
+      <div class="month-div">
         <label for="month">MONTH</label>
-        <input type="number" id="month" name="month" placeholder="MM" required>
+        <input type="number" id="month" name="month" placeholder="MM">
+        <p class="error-empty-month">This field is required</p>
+        <p class="error-month">Must be a valid month</p>
       </div>
-      <div>
+      <div class="year-div">
         <label for="year">YEAR</label>
-        <input type="number" id="year" name="year" placeholder="YYYY" required>
+        <input type="number" id="year" name="year" placeholder="YYYY">
+        <p class="error-empty-year">This field is required</p>
+        <p class="error-year">Must be a valid year</p>
       </div>
     </form>
     <div class="separator">
