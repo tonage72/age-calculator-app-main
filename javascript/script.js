@@ -19,29 +19,58 @@ function calculate() {
 	const day = document.getElementById("day").value;
 	const year = document.getElementById("year").value;
 
-	const wholeDate = month+day+year;
-
 	errorEmptyDay.style.display = "none";
 	errorEmptyMonth.style.display = "none";
 	errorEmptyYear.style.display = "none";
 	errorDay.style.display = "none";
 	errorMonth.style.display = "none";
 	errorYear.style.display = "none";
-	errorDate.style.display = "none"
+	errorDate.style.display = "none";
 
-	if (!month || !day || !year) {
-		if (!month) {
-			errorEmptyMonth.style.display = "block";
-		}
-		if (!day) {
-			errorEmptyDay.style.display = "block";
-		}
-		if (!year) {
-			errorEmptyYear.style.display = "block";
-		}
-	} else {
-		outputYears.innerHTML = year;
-		outputMonths.innerHTML = month;
-		outputDays.innerHTML = day;
+	let dateValid = dateCheck(month, day, year);
+
+	if (dateValid) {
+		outputNumbers(month, day, year);
 	}
+
+}
+
+function dateCheck(month, day, year) {
+
+	let dateValid = true;
+
+	if (!month) {
+		errorEmptyMonth.style.display = "block";
+		dateValid = false;
+	} else if (month < 1 || month > 12) {
+	errorMonth.style.display = "block";
+		dateValid = false;
+	}
+
+	if (!day) {
+		errorEmptyDay.style.display = "block";
+		dateValid = false;
+	} else if (day < 1 || day > 31) {
+		errorDay.style.display = "block";
+		dateValid = false;
+	}
+
+	if (!year) {
+		errorEmptyYear.style.display = "block";
+		dateValid = false;
+	} else if (year < 1800 || year > 2024) {
+		errorYear.style.display = "block";
+		dateValid = false;
+	}
+
+	if (dateValid) {
+		return true;
+	} else
+		return false;
+}
+
+function outputNumbers(month,day,year) {
+	outputYears.innerHTML = year;
+	outputMonths.innerHTML = month;
+	outputDays.innerHTML = day;
 }
