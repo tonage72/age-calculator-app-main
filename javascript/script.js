@@ -18,6 +18,10 @@ function calculate() {
 	const month = document.getElementById("month").value;
 	const day = document.getElementById("day").value;
 	const year = document.getElementById("year").value;
+	let passedMonths = 0;
+	let passedDays = 0;
+	let passedYears = 0;
+	
 
 	errorEmptyDay.style.display = "none";
 	errorEmptyMonth.style.display = "none";
@@ -28,9 +32,24 @@ function calculate() {
 	errorDate.style.display = "none";
 
 	let dateValid = dateCheck(month, day, year);
+	
+	outputYears.innerHTML = "--";
+	outputMonths.innerHTML = "--";
+	outputDays.innerHTML = "--";	
 
 	if (dateValid) {
-		outputNumbers(month, day, year);
+		let wholeDate = month + "-" + day + "-" + year;
+		let pastDate = new Date(wholeDate);
+		let todayDate = new Date();
+		let timeDiff = Math.abs(todayDate.getTime() - pastDate.getTime());
+		let differenceInDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		passedMonths = Math.floor((differenceInDays % 365) / 30);
+		passedDays = differenceInDays % 30;
+		passedYears = Math.floor(differenceInDays / 365);
+
+
+		console.log ('m' + passedMonths + 'd' + passedDays + 'y' + passedYears);
+		outputNumbers(passedMonths, passedDays, passedYears);
 	}
 
 }
