@@ -21,24 +21,17 @@ function calculate() {
 	let passedMonths = 0;
 	let passedDays = 0;
 	let passedYears = 0;
+	let wholeDate = month + "-" + day + "-" + year;
 	
+	clearErrors();
 
-	errorEmptyDay.style.display = "none";
-	errorEmptyMonth.style.display = "none";
-	errorEmptyYear.style.display = "none";
-	errorDay.style.display = "none";
-	errorMonth.style.display = "none";
-	errorYear.style.display = "none";
-	errorDate.style.display = "none";
-
-	let dateValid = dateCheck(month, day, year);
+	let dateValid = dateCheck(month, day, year, wholeDate);
 	
 	outputYears.innerHTML = "--";
 	outputMonths.innerHTML = "--";
 	outputDays.innerHTML = "--";	
 
 	if (dateValid) {
-		let wholeDate = month + "-" + day + "-" + year;
 		let pastDate = new Date(wholeDate);
 		let todayDate = new Date();
 		let timeDiff = Math.abs(todayDate.getTime() - pastDate.getTime());
@@ -46,17 +39,15 @@ function calculate() {
 		passedMonths = Math.floor((differenceInDays % 365) / 30);
 		passedDays = differenceInDays % 30;
 		passedYears = Math.floor(differenceInDays / 365);
-
-
-		console.log ('m' + passedMonths + 'd' + passedDays + 'y' + passedYears);
 		outputNumbers(passedMonths, passedDays, passedYears);
 	}
 
 }
 
-function dateCheck(month, day, year) {
+function dateCheck(month, day, year, wholeDate) {
 
 	let dateValid = true;
+	const timeStamp = Date.parse(wholeDate);
 
 	if (!month) {
 		errorEmptyMonth.style.display = "block";
@@ -82,6 +73,11 @@ function dateCheck(month, day, year) {
 		dateValid = false;
 	}
 
+	if (isNaN(timeStamp)) {
+		errorDate.style.display = "block";
+		dateValid = false;
+	}
+
 	if (dateValid) {
 		return true;
 	} else
@@ -92,4 +88,14 @@ function outputNumbers(month,day,year) {
 	outputYears.innerHTML = year;
 	outputMonths.innerHTML = month;
 	outputDays.innerHTML = day;
+}
+
+function clearErrors() {
+	errorEmptyDay.style.display = "none";
+	errorEmptyMonth.style.display = "none";
+	errorEmptyYear.style.display = "none";
+	errorDay.style.display = "none";
+	errorMonth.style.display = "none";
+	errorYear.style.display = "none";
+	errorDate.style.display = "none";
 }

@@ -39,6 +39,7 @@ body {
 
 .card {
 	width: 93%;
+	max-width: 60rem;
 	background-color: var(--bg-color-card);
 	margin: 5rem auto 0 auto;
 	border-radius: var(--radius-card);
@@ -67,9 +68,9 @@ body {
 	height: 4rem;
 	border: 1px solid var(--input-border-color);
 	border-radius: var(--radius-inputs);
-	font-size: 1.3rem;
-	padding-left: 1rem;
-	font-weight: 700;
+	font-size: clamp(.8rem, 5vw, 1.5rem);
+	padding-left: clamp(.2rem, 3vw, 1rem);
+	font-weight: 800;
 }
 
 .separator {
@@ -106,13 +107,15 @@ body {
 }
 
 .output {
-	font-size: 3.5rem;
+	font-size: clamp(1rem, 14vw, 4rem);
+	white-space: nowrap;
 	font-weight: 800;
 	font-style: italic;
-	line-height: 4.5rem;
+	line-height: clamp(1rem, 15vw, 4.5rem);
 }
 
 .output span {
+	font-size: clamp(1rem, 14vw, 4rem);
 	color: var(--highlight-color);
 }
 
@@ -138,4 +141,37 @@ body {
 
 .attribution a {
 	color: hsl(228, 45%, 44%);
+}
+
+@media (min-width: 775px) {
+
+	.card {
+		margin: 7% auto 0 auto;
+	}
+
+	.card form {
+		width: 75%;
+	}
+
+	.card form label {
+		font-size: 1.3rem;
+	}
+
+	.card form input {
+		height: 5rem;
+		font-size: 2rem;
+	}
+
+	.separator figure {
+		margin: 0 0 0 auto;
+	}
+
+	.output {
+		font-size: 6rem;
+		line-height: 6.5rem;
+	}
+
+	.output span {
+		font-size: 6rem;
+	}
 }
