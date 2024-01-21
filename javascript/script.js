@@ -49,6 +49,14 @@ function dateCheck(month, day, year, wholeDate) {
 	let dateValid = true;
 	const timeStamp = Date.parse(wholeDate);
 
+	if (month == (4 || 6 || 9 || 11)) {
+		maxDays = 30;
+	} else if (month == 2) {
+		maxDays = 28;
+	} else {
+		maxDays = 31;
+	}
+
 	if (!month) {
 		errorEmptyMonth.style.display = "block";
 		dateValid = false;
@@ -73,7 +81,12 @@ function dateCheck(month, day, year, wholeDate) {
 		dateValid = false;
 	}
 
-	if (isNaN(timeStamp)) {
+	if (day > maxDays && dateValid == true) {
+		errorDate.style.display = "block";
+		dateValid = false;
+	}
+
+	if (isNaN(timeStamp) && dateValid == true) {
 		errorDate.style.display = "block";
 		dateValid = false;
 	}

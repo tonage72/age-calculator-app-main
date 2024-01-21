@@ -90,6 +90,7 @@ body {
 	height: 70px;
 	border-radius: 50%;
 	z-index: 1;
+	cursor: pointer;
 }
 
 .separator hr {
